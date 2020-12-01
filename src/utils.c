@@ -1,7 +1,6 @@
 #include <genesis.h>
 
 void drawText(const char *str, u16 x, u16 y) {
-    KLog_U1("", SYS_getInterruptMaskLevel());
     SYS_disableInts();
     VDP_drawText(str, x, y);
     SYS_enableInts();
