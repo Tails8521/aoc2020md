@@ -22,7 +22,7 @@ void day1() {
     u8* to_find = MEM_alloc(YEAR + 1); // WORST HASHSET EVER
     memset(to_find, 0, YEAR + 1);
     u16 idx = 0;
-    const char *cursor = DAY1_INPUT;
+    const u8 *cursor = DAY1_INPUT;
     while (idx < number_count) {
         while (!isdigit(*cursor)) {
             cursor++;

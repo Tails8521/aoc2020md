@@ -12,7 +12,7 @@ void clearText(u16 x, u16 y, u16 w) {
     SYS_enableInts();
 }
 
-u16 skip_atoi(const char **s) {
+u16 skip_atoi(const u8 **s) {
     u16 i = 0;
     while(isdigit(**s)) {
         i = (i * 10) + *((*s)++) - '0';

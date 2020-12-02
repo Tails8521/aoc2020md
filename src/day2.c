@@ -10,7 +10,7 @@ void day2() {
     char result[20];
     startTimer(0);
     drawText("Solving day 2...", 1, line++);
-    const char *cursor = DAY2_INPUT;
+    const u8 *cursor = DAY2_INPUT;
     u16 valid_password_count_part1 = 0;
     u16 valid_password_count_part2 = 0;
     while (cursor < DAY2_INPUT + sizeof DAY2_INPUT) {

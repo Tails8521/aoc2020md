@@ -7,6 +7,6 @@
 
 void drawText(const char *str, u16 x, u16 y);
 void clearText(u16 x, u16 y, u16 w);
-u16 skip_atoi(const char **s);
+u16 skip_atoi(const u8 **s);
 
 #endif // _UTILS_H_
