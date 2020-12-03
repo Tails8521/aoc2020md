@@ -1,4 +1,5 @@
 #include <genesis.h>
+#define U64_DIGITS 40
 
 void drawText(const char *str, u16 x, u16 y) {
     SYS_disableInts();
@@ -18,4 +19,20 @@ u16 skip_atoi(const u8 **s) {
         i = (i * 10) + *((*s)++) - '0';
     }
     return i;
+}
+
+void u64ToStr(unsigned long long value, char *buffer) {
+    char *cursor = buffer;
+    do {
+        *cursor++ = '0' + (value % 10);
+        value /= 10;
+    } while (value != 0);
+    *cursor-- = '\0';
+    // now reverse it
+    char *front_cursor = buffer;
+    while (front_cursor < cursor) {
+        char temp = *front_cursor;
+        *front_cursor++ = *cursor;
+        *cursor-- = temp;
+    }
 }
