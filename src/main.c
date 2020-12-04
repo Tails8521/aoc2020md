@@ -233,7 +233,7 @@ int main() {
             }
             key_pressed = NONE;
         }
-        VDP_waitVSync();
+        SYS_doVBlankProcess();
     }
     return 0;
 }
