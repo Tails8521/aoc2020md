@@ -7,7 +7,6 @@
 void day2() {
     u16 line = 1;
     char buf[200];
-    char result[20];
     startTimer(0);
     drawText("Solving day 2...", 1, line++);
     const u8 *cursor = DAY2_INPUT;
@@ -36,8 +35,7 @@ void day2() {
             }
         }
     }
-    uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1);
-    sprintf(buf, "Solved day 2 in %s ms", result);
+    sprintf(buf, "Solved day 2 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
     sprintf(buf, "Part 1: %u valid passwords", valid_password_count_part1);
     drawText(buf, 1, line++);

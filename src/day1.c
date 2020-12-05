@@ -35,9 +35,7 @@ void day1() {
         idx++;
     }
     char buf[200];
-    char result[20];
-    uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1); 
-    sprintf(buf, "Parsed day 1 input in %s ms", result);
+    sprintf(buf, "Parsed day 1 input in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
 
     // solve
@@ -45,12 +43,10 @@ void day1() {
     drawText("Solving part 1...", 1, line++);
     for (u16 i = 0; i < number_count; i++) {
         if (parsed_input[i] <= YEAR && to_find[parsed_input[i]]) {
-            // KLog_U3("", parsed_input[i], "*", YEAR - parsed_input[i], "=", parsed_input[i] * (YEAR - parsed_input[i]));
-            uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1); 
-            sprintf(buf, "Solved part 1 in %s ms", result);
+            sprintf(buf, "Solved part 1 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
             drawText(buf, 1, line++);
-            uintToStr(parsed_input[i] * (YEAR - parsed_input[i]), result, 1);
-            sprintf(buf, "%u * %u = %s", parsed_input[i], YEAR - parsed_input[i], result);
+            u32 result = parsed_input[i] * (YEAR - parsed_input[i]);
+            sprintf(buf, "%u * %u = %lu", parsed_input[i], YEAR - parsed_input[i], result);
             drawText(buf, 1, line++);
             break;
         }
@@ -60,12 +56,10 @@ void day1() {
     for (u16 i = 0; i < number_count; i++) {
         for (u16 j = 0; j < number_count; j++) {
             if (parsed_input[i] + parsed_input[j] <= YEAR && to_find[parsed_input[i] + parsed_input[j]]) {
-                // KLog_U4("", parsed_input[i], "*", parsed_input[j], "*", YEAR - parsed_input[i] - parsed_input[j], "=", parsed_input[i] * parsed_input[j] * (YEAR - parsed_input[i] - parsed_input[j]));
-                uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1); 
-                sprintf(buf, "Solved part 2 in %s ms", result);
+                sprintf(buf, "Solved part 2 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
                 drawText(buf, 1, line++);
-                uintToStr(parsed_input[i] * parsed_input[j] * (YEAR - parsed_input[i] - parsed_input[j]), result, 1);
-                sprintf(buf, "%u * %u * %u = %s", parsed_input[i], parsed_input[j], YEAR - parsed_input[i] - parsed_input[j], result);
+                u32 result = parsed_input[i] * parsed_input[j] * (YEAR - parsed_input[i] - parsed_input[j]);
+                sprintf(buf, "%u * %u * %u = %lu", parsed_input[i], parsed_input[j], YEAR - parsed_input[i] - parsed_input[j], result);
                 drawText(buf, 1, line++);
                 goto exit;
             }

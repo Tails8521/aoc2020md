@@ -7,7 +7,6 @@
 void day5() {
     u16 line = 1;
     char buf[200];
-    char result[30];
     startTimer(0);
     drawText("Solving part 1...", 1, line++);
     const u8 *cursor = DAY5_INPUT;
@@ -32,8 +31,7 @@ void day5() {
         current = 0;
         cursor++; // newline
     }
-    uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1);
-    sprintf(buf, "Solved part 1 in %s ms", result);
+    sprintf(buf, "Solved part 1 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
     sprintf(buf, "Part 1: Highest seat ID is %u", highest);
     drawText(buf, 1, line++);
@@ -46,8 +44,7 @@ void day5() {
             break;
         }
     }
-    uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1);
-    sprintf(buf, "Solved part 2 in %s ms", result);
+    sprintf(buf, "Solved part 2 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
     sprintf(buf, "Part 2: My seat has ID %d", my_seat);
     drawText(buf, 1, line++);

@@ -7,7 +7,7 @@
 void day3() {
     u16 line = 1;
     char buf[200];
-    char result[30];
+    char u64_result[30];
     startTimer(0);
     drawText("Solving part1...", 1, line++);
     const u8 *cursor = DAY3_INPUT;
@@ -34,8 +34,7 @@ void day3() {
             cursor += line_width + 4; // line_width + 3 + 1 ('\n')
         }
     }
-    uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1);
-    sprintf(buf, "Solved part 1 in %s ms", result);
+    sprintf(buf, "Solved part 1 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
     sprintf(buf, "Part 1: %u trees encountered", tree_count);
     drawText(buf, 1, line++);
@@ -65,11 +64,10 @@ void day3() {
         }
         multiplied_trees *= tree_count;
     }
-    uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1);
-    sprintf(buf, "Solved part 2 in %s ms", result);
+    sprintf(buf, "Solved part 2 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
-    u64ToStr(multiplied_trees, result);
-    sprintf(buf, "Part 2: %s multiplied trees", result);
+    u64ToStr(multiplied_trees, u64_result);
+    sprintf(buf, "Part 2: %s multiplied trees", u64_result);
     drawText(buf, 1, line++);
     drawText("Day 3 done, press START to go back", 1, line + 1);
 }

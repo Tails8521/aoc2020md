@@ -142,7 +142,6 @@ void update_current_passport_validated_bitfield(u16 *current_passport_validated_
 void day4() {
     u16 line = 1;
     char buf[200];
-    char result[30];
     startTimer(0);
     drawText("Solving day 4...", 1, line++);
     u16 valid_passports_part1 = 0;
@@ -185,8 +184,7 @@ void day4() {
             break;
         }
     }
-    uintToStr(getTimer(0, FALSE) / SUBTICKPERMILLISECOND, result, 1);
-    sprintf(buf, "Solved day 4 in %s ms", result);
+    sprintf(buf, "Solved day 4 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
     sprintf(buf, "Part 1: %u valid passports", valid_passports_part1);
     drawText(buf, 1, line++);
