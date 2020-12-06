@@ -9,7 +9,7 @@ void day3() {
     char buf[200];
     char u64_result[30];
     startTimer(0);
-    drawText("Solving part1...", 1, line++);
+    drawText("Solving part 1...", 1, line++);
     const u8 *cursor = DAY3_INPUT;
     u16 tree_count = 0;
     u16 line_width = 0;
@@ -39,7 +39,7 @@ void day3() {
     sprintf(buf, "Part 1: %u trees encountered", tree_count);
     drawText(buf, 1, line++);
     startTimer(0);
-    drawText("Solving part2...", 1, line++);
+    drawText("Solving part 2...", 1, line++);
     // solve part 2
     const u16 SLOPES_X[] = {1, 5, 7, 1};
     const u16 SLOPES_Y[] = {1, 1, 1, 2};
