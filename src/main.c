@@ -227,10 +227,6 @@ int main() {
         else {
             switch (key_pressed) {
             case START:
-                if (selected_item == 6) {
-                    // Workaround for day 7 crash
-                    SYS_hardReset();
-                }
                 program_state = MENU;
                 clear_screen();
                 draw_menu();

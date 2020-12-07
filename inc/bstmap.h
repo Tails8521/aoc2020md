@@ -42,9 +42,8 @@ void insert_bstmap(BinarySearchTreeNode** node_input, const u8 *key, u16 key_len
         }
     }
     *node = MEM_alloc(sizeof (BinarySearchTreeNode));
-    if (*node == NULL) {
-        SYS_die("oom2");
-    }
+    (*node)->left = NULL;
+    (*node)->right = NULL;
     (*node)->key = key;
     (*node)->key_length = key_length;
     (*node)->data = data;

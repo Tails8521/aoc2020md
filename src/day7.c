@@ -67,10 +67,8 @@ void day7() {
     char buf[200];
     startTimer(0);
     drawText("Solving day 7...", 1, line++);
-    // sprintf(buf, "MEM_getFree() = %u", MEM_getFree());
-    // drawText(buf, 1, line++);
-    // sprintf(buf, "MEM_getLargestFreeBlock() = %u", MEM_getLargestFreeBlock());
-    // drawText(buf, 1, line++);
+    sprintf(buf, "MEM_getFree() = %u", MEM_getFree());
+    drawText(buf, 1, line++);
     BinarySearchTreeNode* bag_colors = NULL;
     const u8 *cursor = DAY7_INPUT;
     while (cursor < DAY7_INPUT + sizeof DAY7_INPUT) {
@@ -98,9 +96,6 @@ void day7() {
                     cursor++;
                 }
                 BagListElement* elm = MEM_alloc(sizeof (BagListElement));
-                if (elm == NULL) {
-                    SYS_die("oom1");
-                }
                 elm->next = list_head;
                 elm->bag_name = bag_content_name;
                 elm->bag_name_size = bag_content_name_size;
@@ -108,7 +103,7 @@ void day7() {
                 list_head = elm;
             }
         }
-        insert_bstmap(&(*(&bag_colors)), current_bag_name, current_bag_name_size, list_head);
+        insert_bstmap(&bag_colors, current_bag_name, current_bag_name_size, list_head);
     }
     IterContext iter_context = {
         .bag_colors = bag_colors,
@@ -122,18 +117,12 @@ void day7() {
     drawText(buf, 1, line++);
     sprintf(buf, "Part 2: %lu total bags", iter_context.part2_product);
     drawText(buf, 1, line++);
-    // sprintf(buf, "MEM_getFree() = %u", MEM_getFree());
-    // drawText(buf, 1, line++);
-
-
-    // Not sure why this causes crashes :(
-        
-    // drawText("Freeing memory...", 1, line++);
-    // iterate_bstmap(bag_colors, &iterate_free, &iter_context);
-    // delete_bstmap(bag_colors);
-    // sprintf(buf, "MEM_getFree() = %u", MEM_getFree());
-    // drawText(buf, 1, line++);
-
-
+    sprintf(buf, "MEM_getFree() = %u", MEM_getFree());
+    drawText(buf, 1, line++);
+    drawText("Freeing memory...", 1, line++);
+    iterate_bstmap(bag_colors, &iterate_free, &iter_context);
+    delete_bstmap(bag_colors);
+    sprintf(buf, "MEM_getFree() = %u", MEM_getFree());
+    drawText(buf, 1, line++);
     drawText("Day 7 done, press START to go back", 1, line + 1);
 }
