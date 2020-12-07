@@ -7,6 +7,7 @@
 #include <day4.h>
 #include <day5.h>
 #include <day6.h>
+#include <day7.h>
 
 #define PLANE_W 64
 #define PLANE_H 32
@@ -48,7 +49,7 @@ void (*const days_fcts[])() = {
     &day4,
     &day5,
     &day6,
-    NULL,
+    &day7,
     NULL,
     NULL,
     NULL,
@@ -226,6 +227,10 @@ int main() {
         else {
             switch (key_pressed) {
             case START:
+                if (selected_item == 6) {
+                    // Workaround for day 7 crash
+                    SYS_hardReset();
+                }
                 program_state = MENU;
                 clear_screen();
                 draw_menu();

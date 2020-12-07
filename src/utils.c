@@ -36,3 +36,21 @@ void u64ToStr(unsigned long long value, char *buffer) {
         *cursor-- = temp;
     }
 }
+
+s16 memcmp(const u8 *elm1, const u8 *elm2, u16 len) {
+    while (len-- > 0) {
+        if (*elm1++ != *elm2++) {
+            return elm1[-1] < elm2[-1] ? -1 : 1;
+        }
+    }
+    return 0;
+}
+
+void *calloc(u16 elm_count, u16 elm_size) {
+    u16 size = elm_count * elm_size;
+    void *ret = MEM_alloc(size);
+    if (ret) {
+        memset(ret, 0, size);
+    }
+    return ret;
+}
