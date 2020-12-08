@@ -8,6 +8,7 @@
 #include <day5.h>
 #include <day6.h>
 #include <day7.h>
+#include <day8.h>
 
 #define PLANE_W 64
 #define PLANE_H 32
@@ -50,7 +51,7 @@ void (*const days_fcts[])() = {
     &day5,
     &day6,
     &day7,
-    NULL,
+    &day8,
     NULL,
     NULL,
     NULL,
