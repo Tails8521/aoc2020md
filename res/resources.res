@@ -8,3 +8,4 @@ BIN  DAY5_INPUT  "inputs/day5.input" 2 1 0 NONE TRUE
 BIN  DAY6_INPUT  "inputs/day6.input" 2 1 0 NONE TRUE
 BIN  DAY7_INPUT  "inputs/day7.input" 2 1 0 NONE TRUE
 BIN  DAY8_INPUT  "inputs/day8.input" 2 1 0 NONE TRUE
+BIN  DAY9_INPUT  "inputs/day9.input" 2 1 0 NONE TRUE

@@ -21,6 +21,14 @@ u16 skip_atoi(const u8 **s) {
     return i;
 }
 
+unsigned long long skip_atoi_u64(const u8 **s) {
+    unsigned long long i = 0;
+    while(isdigit(**s)) {
+        i = (i * 10) + *((*s)++) - '0';
+    }
+    return i;
+}
+
 void u64ToStr(unsigned long long value, char *buffer) {
     char *cursor = buffer;
     do {
