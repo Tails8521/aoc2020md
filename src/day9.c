@@ -68,24 +68,16 @@ valid:
     startTimer(0);
     drawText("Solving part 2...", 1, line++);
     u16 index_start = 0;
-    u16 index_end = 0; // inclusive
-    for (u16 i_sum_start = 0; i_sum_start < input_size; i_sum_start++) {
-        unsigned long long acc = input[i_sum_start];
-        for (u16 i_sum_end = i_sum_start + 1; i_sum_end < input_size; i_sum_end++) {
-            acc += input[i_sum_end];
-            if (acc > invalid_number) {
-                // overshot it, try with a next start index
-                break;
-            }
-            if (acc == invalid_number) {
-                index_start = i_sum_start;
-                index_end = i_sum_end;
-                goto exit;
-            }
+    u16 index_end = 1;
+    unsigned long long sum = input[index_start] + input[index_end];
+    while (sum != invalid_number) {
+        while (sum < invalid_number) {
+            sum += input[++index_end];
+        }
+        while (sum > invalid_number) {
+            sum -= input[index_start++];
         }
     }
-exit:
-    ;
     unsigned long long min = 0xffffffffffffffff;
     unsigned long long max = 0;
     for (u16 i = index_start; i <= index_end; i++) {
