@@ -43,6 +43,9 @@ void day9() {
     for (u16 i = PREVIOUS_SIZE; i < input_size; i++) {
         for (u16 x = 0; x < PREVIOUS_SIZE; x++) {
             for (u16 y = 0; y < PREVIOUS_SIZE; y++) {
+                if (x == y) { // or is it previous[x] == previous[y]?
+                    continue;
+                }
                 if (input[i] == previous[x] + previous[y]) {
                     previous[previous_offset++] = input[i];
                     if (previous_offset == PREVIOUS_SIZE) {
