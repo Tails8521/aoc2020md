@@ -10,6 +10,7 @@ extern const u8 DAY6_INPUT[17450];
 extern const u8 DAY7_INPUT[45125];
 extern const u8 DAY8_INPUT[4936];
 extern const u8 DAY9_INPUT[8922];
+extern const u8 DAY10_INPUT[338];
 extern const SpriteDefinition candycane_sprite;
 extern const Image snowflake_image;
 

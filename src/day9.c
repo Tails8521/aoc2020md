@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include <resources.h>
 #include <string.h>
-#include <day8.h>
+#include <day9.h>
 #include <utils.h>
 
 #define PREVIOUS_SIZE 25
@@ -94,5 +94,5 @@ valid:
     sprintf(buf, "Part 2: %s", u64_result);
     drawText(buf, 1, line++);
     MEM_free(input);
-    drawText("Day 8 done, press START to go back", 1, line + 1);
+    drawText("Day 9 done, press START to go back", 1, line + 1);
 }
