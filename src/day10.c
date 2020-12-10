@@ -18,7 +18,7 @@ int path_compare(const void *a, const void *b, void *udata) {
 
 uint64_t path_hash(const void *item, uint64_t seed0, uint64_t seed1) {
     const Path *elm = item;
-    return hashmap_murmur(&elm->jolt, sizeof (s16), seed0, seed1);
+    return (u16)elm->jolt; // cast to avoid sign extension
 }
 
 void day10() {
@@ -72,7 +72,7 @@ void day10() {
     drawText(buf, 1, line++);
     startTimer(0);
     drawText("Solving part 2...", 1, line++);
-    struct hashmap *paths = hashmap_new(sizeof (Path), input_size, 0, 0, path_hash, path_compare, NULL);
+    struct hashmap *paths = hashmap_new(sizeof (Path), input_size * 2, 0, 0, path_hash, path_compare, NULL);
     hashmap_set(paths, &(Path) {
         .jolt = -1,
         .value = 1,

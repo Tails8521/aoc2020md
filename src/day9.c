@@ -3,8 +3,20 @@
 #include <string.h>
 #include <day9.h>
 #include <utils.h>
+#include <hashmap.h>
 
 #define PREVIOUS_SIZE 25
+
+int u64_compare(const void *a, const void *b, void *udata) {
+    const unsigned long long *elm1 = a;
+    const unsigned long long *elm2 = b;
+    return *elm1 - *elm2;
+}
+
+uint64_t u64_hash(const void *item, uint64_t seed0, uint64_t seed1) {
+    const unsigned long long *elm = item;
+    return *elm; // identity is a hash function :p
+}
 
 void day9() {
     u16 line = 1;
@@ -40,19 +52,21 @@ void day9() {
     }
     
     unsigned long long invalid_number = 0;
+    struct hashmap *values_map = hashmap_new(sizeof (unsigned long long), 128, 0, 0, u64_hash, u64_compare, NULL);
+    for (u16 x = 0; x < PREVIOUS_SIZE; x++) {
+        hashmap_set(values_map, &previous[x]);
+    }
     for (u16 i = PREVIOUS_SIZE; i < input_size; i++) {
         for (u16 x = 0; x < PREVIOUS_SIZE; x++) {
-            for (u16 y = 0; y < PREVIOUS_SIZE; y++) {
-                if (x == y) { // or is it previous[x] == previous[y]?
-                    continue;
+            unsigned long long value_to_find = input[i] - previous[x];
+            if (value_to_find != previous[x] && hashmap_get(values_map, &value_to_find)) {
+                hashmap_delete(values_map, &previous[previous_offset]);
+                hashmap_set(values_map, &input[i]);
+                previous[previous_offset++] = input[i];
+                if (previous_offset == PREVIOUS_SIZE) {
+                    previous_offset = 0;
                 }
-                if (input[i] == previous[x] + previous[y]) {
-                    previous[previous_offset++] = input[i];
-                    if (previous_offset == PREVIOUS_SIZE) {
-                        previous_offset = 0;
-                    }
-                    goto valid;
-                }
+                goto valid;
             }
         }
         invalid_number = input[i];
@@ -60,6 +74,7 @@ void day9() {
 valid:
         ;
     }
+    hashmap_free(values_map);
     sprintf(buf, "Solved part 1 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
     u64ToStr(invalid_number, u64_result);
