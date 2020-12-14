@@ -119,7 +119,7 @@ struct hashmap *hashmap_new(size_t elsize, size_t cap,
         return NULL;
     }
     memset(map->buckets, 0, map->bucketsz*map->nbuckets);
-    map->growat = map->nbuckets*0.75;
+    map->growat = map->nbuckets;
     map->shrinkat = map->nbuckets*0.10;
     return map;    
 }
@@ -142,7 +142,7 @@ void hashmap_clear(struct hashmap *map, bool update_cap) {
     }
     memset(map->buckets, 0, map->bucketsz*map->nbuckets);
     map->mask = map->nbuckets-1;
-    map->growat = map->nbuckets*0.75;
+    map->growat = map->nbuckets;
     map->shrinkat = map->nbuckets*0.10;
 }
 
