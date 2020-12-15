@@ -15,6 +15,7 @@
 #include <day12.h>
 #include <day13.h>
 #include <day14.h>
+#include <day15.h>
 
 #define PLANE_W 64
 #define PLANE_H 32
@@ -64,7 +65,7 @@ void (*const days_fcts[])() = {
     &day12,
     &day13,
     &day14,
-    NULL,
+    &day15,
     NULL,
     NULL,
     NULL,
@@ -145,6 +146,7 @@ void draw_menu() {
             sprintf(buf, "Day %2u (not yet)", i + 1);
         }
         drawText(buf, 10, i + 1);
+        drawText("(Part 1 only)", 17, 15);
     }
 }
 
