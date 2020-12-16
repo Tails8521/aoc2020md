@@ -219,6 +219,7 @@ int main() {
                     key_pressed = NONE;
                     clear_screen();
                     days_fcts[selected_item]();
+                    MEM_pack();
                     continue;
                 }
                 break;
