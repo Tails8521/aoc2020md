@@ -11,15 +11,15 @@ typedef struct {
     u16 parts[3];
 } u48;
 
-unsigned long long unpack_u48(u48 value) {
-    unsigned long long ret = 0;
-    ret += (unsigned long long)value.parts[0] << 32;
-    ret += (unsigned long long)value.parts[1] << 16;
-    ret += (unsigned long long)value.parts[2];
+u64 unpack_u48(u48 value) {
+    u64 ret = 0;
+    ret += (u64)value.parts[0] << 32;
+    ret += (u64)value.parts[1] << 16;
+    ret += (u64)value.parts[2];
     return ret;
 }
 
-u48 pack_u48(unsigned long long value) {
+u48 pack_u48(u64 value) {
     u48 ret;
     ret.parts[0] = value >> 32;
     ret.parts[1] = value >> 16;
@@ -45,7 +45,7 @@ uint64_t memory_cell_hash(const void *item, uint64_t seed0, uint64_t seed1) {
 
 bool memory_cell_sum(const void *item, void *udata) {
     const MemoryCell *elm = item;
-    unsigned long long *total = udata;
+    u64 *total = udata;
     *total += unpack_u48(elm->value);
     return true;
 }
@@ -57,15 +57,15 @@ void day14() {
     startTimer(0);
     drawText("Solving part 1...", 1, line++);
     const u8 *cursor = DAY14_INPUT;
-    unsigned long long and_mask;
-    unsigned long long or_mask;
+    u64 and_mask;
+    u64 or_mask;
     struct hashmap *memory = hashmap_new(sizeof (MemoryCell), 2048, 0, 0, memory_cell_hash, memory_cell_compare, NULL);
     while (cursor < DAY14_INPUT + sizeof DAY14_INPUT) {
         if (cursor[1] == 'e') { // mem
             cursor += 4; // "mem["
             u16 index = skip_atoi(&cursor);
             cursor += 4; // "] = "
-            unsigned long long value = skip_atoi_u64(&cursor);
+            u64 value = skip_atoi_u64(&cursor);
             value &= and_mask;
             value |= or_mask;
             hashmap_set(memory, &(MemoryCell) {
@@ -91,7 +91,7 @@ void day14() {
         cursor++; // newline
     }
     
-    unsigned long long total = 0;
+    u64 total = 0;
     hashmap_scan(memory, &memory_cell_sum, &total);
     sprintf(buf, "Solved part 1 in %lu ms", getTimer(0, FALSE) / SUBTICKPERMILLISECOND);
     drawText(buf, 1, line++);
@@ -107,8 +107,8 @@ void day14() {
         hashmap_clear(memory, true);
         // This works for my input, may have to be adjusted for other inputs to avoid OOM when adding to the hashmap
         // Larger masks (and thus larger partition count) are safer, but obviously take way longer to complete
-        const unsigned long long partition_mask = 0x0000000000fff000;
-        unsigned long long partition = (unsigned long long)partition_index << 12;
+        const u64 partition_mask = 0x0000000000fff000;
+        u64 partition = (u64)partition_index << 12;
         cursor = DAY14_INPUT;
         u16 addr_per_line;
         u16 x_count;
@@ -116,14 +116,14 @@ void day14() {
         while (cursor < DAY14_INPUT + sizeof DAY14_INPUT) {
             if (cursor[1] == 'e') { // mem
                 cursor += 4; // "mem["
-                unsigned long long index_base = skip_atoi(&cursor);
+                u64 index_base = skip_atoi(&cursor);
                 cursor += 4; // "] = "
-                unsigned long long value = skip_atoi_u64(&cursor);
+                u64 value = skip_atoi_u64(&cursor);
                 index_base |= or_mask;
                 for (u16 permutation = 0; permutation < addr_per_line; permutation++) {
-                    unsigned long long index = index_base;
+                    u64 index = index_base;
                     for (u16 x = 0; x < x_count; x++) {
-                        unsigned long long current_bit = permutation & (1 << x);
+                        u64 current_bit = permutation & (1 << x);
                         if (current_bit) {
                             index |= (1ULL << x_pos[x]);
                         } else {
@@ -159,7 +159,7 @@ void day14() {
             }
             cursor++; // newline
         }
-        unsigned long long partition_total = 0;
+        u64 partition_total = 0;
         hashmap_scan(memory, &memory_cell_sum, &partition_total);
         total += partition_total;
         // KLog_U1("", hashmap_count(memory));

@@ -6,9 +6,10 @@
 #define HASHMAP_H
 
 #include <genesis.h>
+#include <utils.h>
 
 #define size_t u16
-#define uint64_t unsigned long long
+#define uint64_t u64
 #define uintptr_t void*
 #define true TRUE
 #define false FALSE

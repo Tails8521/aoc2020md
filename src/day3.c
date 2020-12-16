@@ -43,7 +43,7 @@ void day3() {
     // solve part 2
     const u16 SLOPES_X[] = {1, 5, 7, 1};
     const u16 SLOPES_Y[] = {1, 1, 1, 2};
-    unsigned long long multiplied_trees = tree_count;
+    u64 multiplied_trees = tree_count;
     for (u16 i = 0; i < 4; i++) {
         tree_count = 0;
         pos_x = 0;

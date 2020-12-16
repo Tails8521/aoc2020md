@@ -1,4 +1,5 @@
 #include <genesis.h>
+#include <utils.h>
 #define U64_DIGITS 40
 
 void drawText(const char *str, u16 x, u16 y) {
@@ -21,15 +22,15 @@ u16 skip_atoi(const u8 **s) {
     return i;
 }
 
-unsigned long long skip_atoi_u64(const u8 **s) {
-    unsigned long long i = 0;
+u64 skip_atoi_u64(const u8 **s) {
+    u64 i = 0;
     while(isdigit(**s)) {
         i = (i * 10) + *((*s)++) - '0';
     }
     return i;
 }
 
-void u64ToStr(unsigned long long value, char *buffer) {
+void u64ToStr(u64 value, char *buffer) {
     char *cursor = buffer;
     do {
         *cursor++ = '0' + (value % 10);

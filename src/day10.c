@@ -7,7 +7,7 @@
 
 typedef struct {
     s16 jolt;
-    unsigned long long value;
+    u64 value;
 } Path;
 
 int path_compare(const void *a, const void *b, void *udata) {
@@ -77,10 +77,10 @@ void day10() {
         .jolt = -1,
         .value = 1,
     });
-    unsigned long long last_sum = 0;
+    u64 last_sum = 0;
     for (u16 jolt_index = 0; jolt_index < input_size; jolt_index++) {
         u16 jolt = input[jolt_index];
-        unsigned long long sum = 0;
+        u64 sum = 0;
         Path* len_1_path = hashmap_get(paths, &(Path) {
             .jolt = jolt - 1,
         });

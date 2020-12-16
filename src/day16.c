@@ -134,7 +134,7 @@ void day16() {
             }
         }
     }
-    unsigned long long product = 1;
+    u64 product = 1;
     for (u16 i = 0; i < rule_count; i++) {
         if (rules[i].is_departure) {
             product *= my_ticket[rule_index_to_ticket_index[i]];

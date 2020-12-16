@@ -59,8 +59,8 @@ void day13() {
         bus_offset++;
         cursor++;
     }
-    unsigned long long timestamp = 0;
-    unsigned long long increment = lines[0].id;
+    u64 timestamp = 0;
+    u64 increment = lines[0].id;
     u16 ok_count = 1; // no need to do anything for the first one
     while (ok_count < bus_count) {
         if ((timestamp + lines[ok_count].offset) % lines[ok_count].id == 0) {
