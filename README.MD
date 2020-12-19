@@ -1,3 +1,8 @@
 # Advent of Code 2020 on a Sega Megadrive
 
-Let's see how many puzzles I can complete
+### How to build the ROM, with your own input
+
+Install [SGDK 1.6](https://github.com/Stephane-D/SGDK)  
+Put your inputs like so: res/inputs/dayX.input  
+Run this command to build the ROM:  
+`%GDK%\bin\make -f %GDK%\makefile.gen clean && %GDK%\bin\make -f %GDK%\makefile.gen`
