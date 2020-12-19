@@ -4,8 +4,9 @@
 #include <genesis.h>
 
 #define SUBTICKPERMILLISECOND    77
-#define u64 unsigned long long
 #define ishexdigit(c)      (((c) >= '0' && (c) <= '9') || ((c) >= 'a' && (c) <= 'f'))
+
+typedef unsigned long long u64;
 
 void drawText(const char *str, u16 x, u16 y);
 void clearText(u16 x, u16 y, u16 w);
