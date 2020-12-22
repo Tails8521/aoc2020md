@@ -19,3 +19,4 @@ BIN  DAY16_INPUT  "inputs/day16.input" 2 1 0 NONE TRUE
 BIN  DAY17_INPUT  "inputs/day17.input" 2 1 0 NONE TRUE
 BIN  DAY18_INPUT  "inputs/day18.input" 2 1 0 NONE TRUE
 BIN  DAY19_INPUT  "inputs/day19.input" 2 1 0 NONE TRUE
+BIN  DAY20_INPUT  "inputs/day20.input" 2 1 0 NONE TRUE
